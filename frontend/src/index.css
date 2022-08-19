@@ -66,6 +66,9 @@ header a {
   border-radius: 50%;
   color: #333;
 }
+.workout-details span:hover {
+  background-color: #ff0800;
+}
 
 /* new workout form */
 label,
@@ -89,6 +92,12 @@ form button {
   font-family: "Poppins";
   border-radius: 4px;
   cursor: pointer;
+}
+form button:hover {
+  background-color: #033f2e;
+}
+.noHover {
+  pointer-events: none;
 }
 div.error {
   padding: 10px;
