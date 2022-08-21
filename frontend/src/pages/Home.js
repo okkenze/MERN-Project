@@ -4,7 +4,7 @@ import WorkoutDetails from "../components/WorkoutDetails";
 import WorkoutForm from "../components/WorkoutForm";
 import ErrorModal from "../components/UI/ErrorModal";
 
-const Home = () => {
+const Home = (props) => {
   const { workouts, dispatch } = useWorkoutsContext();
 
   const [error, setError] = useState(null);
@@ -29,6 +29,7 @@ const Home = () => {
   const errorHandler = () => {
     setError(null);
   };
+  const handleGetWorkout = () => {};
 
   return (
     <div className="home">
@@ -46,6 +47,7 @@ const Home = () => {
               key={workout._id}
               workout={workout}
               showModal={showModal}
+              onMouseDown={handleGetWorkout}
             />
           ))}
       </div>
