@@ -1,20 +1,22 @@
-import React, { useState } from "react";
-import ErrorModal from "./UI/ErrorModal";
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 
-const WorkoutForm = () => {
+const EditWorkout = () => {
   const { dispatch } = useWorkoutsContext();
   const [title, setTitle] = useState("");
   const [load, setLoad] = useState("");
   const [reps, setReps] = useState("");
-  const [error, setError] = useState(null);
   const [emptyFields, setEmptyFields] = useState([]);
+  var location = useLocation();
+
+  console.log(location.search);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const workout = { title, load, reps };
     const response = await fetch("/api/workouts", {
-      method: "POST",
+      method: "PATCH",
       body: JSON.stringify(workout),
       headers: {
         "Content-Type": "application/json",
@@ -22,40 +24,31 @@ const WorkoutForm = () => {
     });
     const json = await response.json();
     if (!response.ok) {
-      setError({
-        title: "Error",
-        message: json.error,
-      });
+      //   setError({
+      //     title: "Error",
+      //     message: json.error,
+      //   });
+      console.log(json.error);
       setEmptyFields(json.emptyFields);
     } else {
       setTitle("");
       setLoad("");
       setReps("");
-      setError({
-        title: "New workout",
-        message: "New workout added successfully",
-      });
+      console.log(json);
+      //   setError({
+      //     title: "New workout",
+      //     message: "New workout added successfully",
+      //   });
       setEmptyFields([]);
       //setError(null);
       console.log("New workout added", json);
-      dispatch({ type: "CREATE_WORKOUT", payload: json });
+      dispatch({ type: "UPDATE_WORKOUT", payload: json });
     }
   };
-  const errorHandler = () => {
-    setError(null);
-  };
-
   return (
-    <div>
-      {error && (
-        <ErrorModal
-          title={error.title}
-          message={error.message}
-          onConfirm={errorHandler}
-        />
-      )}
+    <div style={{ width: "50%", alignContent: "center", margin: "0 auto" }}>
       <form className="create" onSubmit={handleSubmit}>
-        <h3>Add a New Workout</h3>
+        <h3>Edit Workout</h3>
         <label>Exercise Title:</label>
         <input
           type="text"
@@ -80,11 +73,11 @@ const WorkoutForm = () => {
           className={emptyFields.includes("reps") ? "error" : ""}
         />
         <button className={!reps ? "noHover" : ""} disabled={!reps}>
-          Add workout
+          Update workout
         </button>
       </form>
     </div>
   );
 };
 
-export default WorkoutForm;
+export default EditWorkout;

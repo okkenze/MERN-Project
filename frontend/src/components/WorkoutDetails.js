@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 import DeleteDialog from "../components/UI/DeleteDialog";
+import Moment from "moment";
+import { Link } from "react-router-dom";
 
 const WorkoutDetails = ({ workout, showModal }) => {
   const { dispatch } = useWorkoutsContext();
@@ -40,8 +42,25 @@ const WorkoutDetails = ({ workout, showModal }) => {
       <p>
         <strong>Reps:</strong> {workout.reps}
       </p>
-      <p>{workout.createdAt}</p>
-      <span onClick={handleDelete}>Delete</span>
+      <p>{Moment(workout.createdAt).format("YYYY-MM-DD hh:mm:ss")}</p>
+      <span className="material-symbols-outlined" onClick={handleDelete}>
+        Delete
+      </span>
+
+      <Link
+        className="material-symbols-outlined"
+        // to="/editworkout"
+        // state={{
+        //   data: workout,
+        // }}
+        to={{
+          pathname: "editworkout",
+          search: "okey",
+        }}
+      >
+        Edit
+      </Link>
+
       {showBox && (
         <DeleteDialog
           title={showBox.title}
