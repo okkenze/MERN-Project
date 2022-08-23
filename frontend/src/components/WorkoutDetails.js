@@ -47,20 +47,25 @@ const WorkoutDetails = ({ workout, showModal }) => {
         Delete
       </span>
 
-      <Link
-        className="material-symbols-outlined"
-        // to="/editworkout"
-        // state={{
-        //   data: workout,
-        // }}
-        to={{
-          pathname: "editworkout",
-          search: "okey",
-        }}
-      >
-        Edit
-      </Link>
-
+      <div id="edit">
+        {" "}
+        <Link
+          className="material-symbols-outlined"
+          to="/editworkout"
+          state={{
+            _id: workout._id,
+            _title: workout.title,
+            _load: workout.load,
+            _reps: workout.reps,
+          }}
+          // to={{
+          //   pathname: "editworkout",
+          //   state: { id: workout._id },
+          // }}
+        >
+          Edit
+        </Link>
+      </div>
       {showBox && (
         <DeleteDialog
           title={showBox.title}

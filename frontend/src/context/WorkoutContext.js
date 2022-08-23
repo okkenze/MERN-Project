@@ -20,6 +20,11 @@ export const workoutsReducer = (state, action) => {
         workouts: state.workouts.filter((w) => w._id !== action.payload._id),
       };
 
+    // case "SINGLE_WORKOUT":
+    //   return {
+    //     workouts: state.workouts.filter((w) => w._id !== action.payload._id),
+    //   };
+
     default:
       return state;
   }
