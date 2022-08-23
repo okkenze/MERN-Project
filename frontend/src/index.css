@@ -69,6 +69,20 @@ header a {
 .workout-details span:hover {
   background-color: #ff0800;
 }
+#edit {
+  position: absolute;
+  top: 90px;
+  right: 20px;
+  cursor: pointer;
+  background: #f1f1f1;
+  padding: 6px;
+  border-radius: 50%;
+  color: #333;
+}
+
+#edit:hover {
+  background-color: #36e912;
+}
 
 /* new workout form */
 label,
@@ -109,4 +123,29 @@ div.error {
 }
 input.error {
   border: 1px solid var(--error);
+}
+
+/*Tooltip*/
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }

@@ -30,8 +30,7 @@ mongoose
     //var PORT = process.env.PORT || 5001;
     app.listen(process.env.PORT, () => {
       console.log(
-        "Connected to db and listening on port",
-        process.env.PORT + "......."
+        `Connected to db and listening on port,${process.env.PORT}.......`
       );
     });
   })
